@@ -3,8 +3,6 @@ import { Layout } from './components/layout'
 import { KnapsackPage } from './pages/aula-06-bnb'
 import { DpPage } from './pages/aula-07-dp'
 
-declare const importMeta: ImportMeta
-
 const rootRoute = createRootRoute({ component: Layout })
 
 const indexRoute = createRoute({
@@ -30,7 +28,10 @@ const aula07Route = createRoute({
 const routeTree = rootRoute.addChildren([indexRoute, aula06Route, aula07Route])
 
 // Vite's base path is also the router base for GitHub Pages project sites.
-export const router = createRouter({ routeTree, basepath: importMeta.env.BASE_URL.replace(/\/$/, '') || '/' })
+export const router = createRouter({
+  routeTree,
+  basepath: import.meta.env.BASE_URL.replace(/\/$/, '') || '/',
+})
 
 declare module '@tanstack/react-router' {
   interface Register {
